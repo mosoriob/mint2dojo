@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { ModelExecutions } from '../types'
 
-export  async function fetchTopoflowExecution(start_date: string, end_date: string): Promise<ModelExecutions> {
+export  async function fetchTopoflowExecution(start_date: string, end_date: string, model_config_id: string): Promise<ModelExecutions> {
     const topoflowQuery = `
   fragment emulator_execution_info on execution {
     id
@@ -75,7 +75,7 @@ export  async function fetchTopoflowExecution(start_date: string, end_date: stri
             variables: {
                 start_date: start_date,
                 end_date: end_date,
-                modelType: "https://w3id.org/okn/i/mint/b93ea0b1-1715-4178-9354-ada679d1d140",
+                modelType: model_config_id,
             },
         }),
     })
