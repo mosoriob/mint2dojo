@@ -4,8 +4,8 @@ import { fetchTopoflowExecution } from '../queries/topoflow'
 import { linkDownloader } from '../utils'
 
 const galana_model: string = "https://w3id.org/okn/i/mint/5f98775c-0e2e-4da7-bf24-5b1125a4268b"
-const tana_model = "https://w3id.org/okn/i/mint/f5d67b8d-e70a-45f2-a5f9-11eeadf741ad"
-const mapping = {'tana': tana_model, 'galana': galana_model}
+const tana_model: string = "https://w3id.org/okn/i/mint/f5d67b8d-e70a-45f2-a5f9-11eeadf741ad"
+const mapping:  { [id: string] : string; } = {'tana': tana_model, 'galana': galana_model}
 
 
 

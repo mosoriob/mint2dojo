@@ -28,28 +28,8 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`mint2dojo hello [FILE]`](#mint2dojo-hello-file)
 * [`mint2dojo help [COMMAND]`](#mint2dojo-help-command)
-
-## `mint2dojo hello [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ mint2dojo hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ mint2dojo hello
-  hello world from ./src/hello.ts!
-```
-
-_See code: [src/commands/hello.ts](https://github.com/mosoriob/mint2dojo/blob/v0.0.0/src/commands/hello.ts)_
+* [`mint2dojo topoflow [FILE]`](#mint2dojo-topoflow-file)
 
 ## `mint2dojo help [COMMAND]`
 
@@ -67,4 +47,27 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3/src/commands/help.ts)_
+
+## `mint2dojo topoflow [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ mint2dojo topoflow [FILE]
+
+OPTIONS
+  -b, --basin=basin            [default: tana] The basin to run
+  -e, --end_date=end_date      [default: 2016-01-01] The end date 2015-01-01
+  -f, --force
+  -h, --help                   show CLI help
+  -n, --name=name              name to print
+  -s, --start_date=start_date  [default: 2015-01-01] The start date 2015-01-01
+
+EXAMPLE
+  $ mint2dojo hello
+  hello world from ./src/hello.ts!
+```
+
+_See code: [src/commands/topoflow.ts](https://github.com/mosoriob/mint2dojo/blob/v0.0.0/src/commands/topoflow.ts)_
 <!-- commandsstop -->
