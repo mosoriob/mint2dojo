@@ -20,8 +20,12 @@ hello world from ./src/hello.ts!
   static flags = {
     help: flags.help({ char: 'h' }),
     start_year: flags.string({ char: 's', description: 'The start date 2000', default: '2000'}),
-    end_year: flags.string({ char: 'e', description: 'The end date 2017', default: '2017'}),
+    end_year: flags.string({ char: 'e', description: 'The end date 2017', default: '2020'}),
     force: flags.boolean({ char: 'f' }),
+    crop_name: flags.string({ char: 's', description: 'The start date 2000', default: 'Sorghum'}),
+    start_planting_day: flags.string({ char: 's', description: 'The start date 2000', default: '103'}),
+    weed_fraction: flags.string({ char: 's', description: 'The start date 2000', default: '0.001'}),
+    fertilizer_rate: flags.string({ char: 'e', description: 'The end date 2017', default: '0'}),
   }
 
   static args = [{ name: 'file' }]
@@ -29,10 +33,27 @@ hello world from ./src/hello.ts!
   async run() {
     const { args, flags } = this.parse(Cycles)
 
+    
+    
+    
+    
     let start_year : string = flags.start_year
     let end_year : string = flags.end_year
+    let crop_name : string = flags.crop_name
+    let fertilizer_rate : string = flags.fertilizer_rate
+    let start_planting_day : string = flags.start_planting_day
+    let weed_fraction : string = flags.weed_fraction
+
     let model_config_id: string = "https://w3id.org/okn/i/mint/b05d1d22-5f67-4d11-bbcc-b015c9a447de"
-    let executions: ModelExecutions = await fetchCyclesExecution( start_year, end_year, model_config_id)
+    let executions: ModelExecutions = await fetchCyclesExecution( 
+      start_year, 
+      end_year,
+      model_config_id,
+      crop_name,
+      start_planting_day,
+      fertilizer_rate,
+      weed_fraction
+    )
     let urls = executions.execution.map((execution => {
       return execution.results.map(result => {
         return result.resource.url
