@@ -1,7 +1,7 @@
 {
   "name": "mint2dojo",
   "description": "A tool to integrate MINT with Dojo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "Maximilinano Osorio @mosoriob",
   "bin": {
     "mint2dojo": "./bin/run"
