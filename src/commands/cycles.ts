@@ -19,13 +19,14 @@ hello world from ./src/hello.ts!
   ]
   static flags = {
     help: flags.help({ char: 'h' }),
-    start_year: flags.string({ char: 's', description: 'The start date 2000', default: '2000'}),
-    end_year: flags.string({ char: 'e', description: 'The end date 2017', default: '2020'}),
-    force: flags.boolean({ char: 'f' }),
-    crop_name: flags.string({ char: 's', description: 'The start date 2000', default: 'Sorghum'}),
-    start_planting_day: flags.string({ char: 's', description: 'The start date 2000', default: '103'}),
-    weed_fraction: flags.string({ char: 's', description: 'The start date 2000', default: '0.001'}),
-    fertilizer_rate: flags.string({ char: 'e', description: 'The end date 2017', default: '0'}),
+    start_year: flags.string({description: 'The start date', default: '2000'}),
+    end_year: flags.string({description: 'The end date', default: '2020'}),
+    crop_name: flags.string({description: 'Cropname', default: 'Millet'}),
+    start_planting_day: flags.string({description: 'Start Planting Day', default: '89'}),
+    weed_fraction: flags.string({description: 'Weed Fraction', default: '0.2'}),
+    fertilizer_rate: flags.string({description: 'Fertilizer Rate', default: '200'}),
+    lat: flags.string({description: 'Latitute', default: '3.04167'}),
+    lon: flags.string({description: 'Longitude', default: '39.45833'}),
   }
 
   static args = [{ name: 'file' }]
@@ -43,7 +44,9 @@ hello world from ./src/hello.ts!
     let fertilizer_rate : string = flags.fertilizer_rate
     let start_planting_day : string = flags.start_planting_day
     let weed_fraction : string = flags.weed_fraction
-
+    let lat: string = flags.lat
+    let long: string = flags.lon
+    let weather_file: string = `${lat}-${long}`
     let model_config_id: string = "https://w3id.org/okn/i/mint/b05d1d22-5f67-4d11-bbcc-b015c9a447de"
     let executions: ModelExecutions = await fetchCyclesExecution( 
       start_year, 
@@ -52,7 +55,8 @@ hello world from ./src/hello.ts!
       crop_name,
       start_planting_day,
       fertilizer_rate,
-      weed_fraction
+      weed_fraction,
+      weather_file
     )
     let urls = executions.execution.map((execution => {
       return execution.results.map(result => {

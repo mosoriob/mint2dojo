@@ -9,6 +9,7 @@ export  async function fetchCyclesExecution(
   start_planting_day: string,
   fertilizer_rate: string,
   weed_fraction: string,
+  cycles_file: string,
   ): Promise<ModelExecutions> {
     const topoflowQuery = `
  fragment emulator_execution_info on execution {
@@ -36,6 +37,7 @@ export  async function fetchCyclesExecution(
     $fertilizer_rate: String!
 		$start_planting_day: String!
     $weed_fraction: String!
+    $cycles_file: String!
     ) {
     execution(
       limit: 100
@@ -106,6 +108,17 @@ export  async function fetchCyclesExecution(
               }
                 ]
           }
+          {
+            _or: [
+              {
+                data_bindings: {
+									resource: {
+                  	name: {_ilike: $cycles_file}
+                  }
+                }
+              }
+                ]
+          }
         ]
       }
 
@@ -129,7 +142,8 @@ export  async function fetchCyclesExecution(
                 crop_name: crop_name,
                 start_planting_day: start_planting_day,
                 fertilizer_rate: fertilizer_rate,
-                weed_fraction: weed_fraction
+                weed_fraction: weed_fraction,
+                cycles_file: `%${cycles_file}%`
             },
         }),
     })
